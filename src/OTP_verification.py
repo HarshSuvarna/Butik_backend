@@ -8,6 +8,7 @@ import re
 from dotenv import load_dotenv
 import os
 import requests
+from fastapi import HTTPException
 
 
 def isValid(s):
@@ -108,7 +109,7 @@ def verify_otp(verifyotp, db):
         mobile = str(mobile_q[0])
         cc = mobile_q[1]
     except:
-        return {"status_code": 0, "message": "Incorrect mobile number", "data": {}}
+        raise HTTPException(status_code=0, detail="Incorrect mobile number")
 
     otp_q = (
         db.query(OTPs.otp_code, OTPs.mobile, OTPs.cc)
@@ -127,7 +128,8 @@ def verify_otp(verifyotp, db):
     )
 
     if otp_q == None:
-        return {"status_code": 0, "message": "Incorrect OTP", "data": {}}
+        raise HTTPException(status_code=0, detail="Incorrect OTP 444")
+
     elif (
         str(otp_q.otp_code) == "100399"
         and otp_q.mobile == "9987646007"
@@ -140,7 +142,9 @@ def verify_otp(verifyotp, db):
             "data": {"mobile": mobile, "Token": token},
         }
     elif str(datetime.datetime.now().replace(microsecond=0)) > otp_exp[0]:
-        return {"status_code": 0, "message": "OTP has Expired", "data": {}}
+        print("here 1")
+        raise HTTPException(status_code=0, detail="OTP has Expired")
+
     elif (
         str(otp_q.otp_code) == otp
         and otp_q.mobile == mobile
@@ -179,4 +183,5 @@ def verify_otp(verifyotp, db):
     ):
         pass
     else:
-        return {"status_code": 0, "message": "Incorrect OTP", "data": {}}
+        print("here 2")
+        raise HTTPException(status_code=0, detail="OTP has Expired")

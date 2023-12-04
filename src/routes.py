@@ -136,6 +136,7 @@ def send(user: User_basic, db: Session = Depends(get_db)):
 
 @user.post("/verify_otp", tags=["OTP"])
 def login(verifyotp: VerifyOtp, db: Session = Depends(get_db)):
+    print("vasdfasfd", verifyotp)
     output = verify_otp(verifyotp, db)
     return output
 
