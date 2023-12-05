@@ -128,7 +128,7 @@ def verify_otp(verifyotp, db):
     )
 
     if otp_q == None:
-        raise HTTPException(status_code=0, detail="Incorrect OTP")
+        raise HTTPException(status_code=409, detail="Incorrect OTP")
 
     elif (
         str(otp_q.otp_code) == "100399"
@@ -142,7 +142,7 @@ def verify_otp(verifyotp, db):
             "data": {"mobile": mobile, "Token": token},
         }
     elif str(datetime.datetime.now().replace(microsecond=0)) > otp_exp[0]:
-        raise HTTPException(status_code=0, detail="OTP has Expired")
+        raise HTTPException(status_code=409, detail="OTP has Expired")
 
     elif (
         str(otp_q.otp_code) == otp
@@ -182,4 +182,4 @@ def verify_otp(verifyotp, db):
     ):
         pass
     else:
-        raise HTTPException(status_code=0, detail="OTP has Expired")
+        raise HTTPException(status_code=409, detail="OTP has Expired")

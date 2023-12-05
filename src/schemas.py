@@ -4,7 +4,7 @@ from typing import Optional, List
 
 
 class User_basic(BaseModel):
-    cc: str = Field(max_length=3)
+    cc: str = Field(max_length=5, min_length=2)
     mobile: str = Field(max_length=10, min_length=10)
 
 
