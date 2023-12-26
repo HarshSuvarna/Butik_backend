@@ -46,12 +46,16 @@ def get_subcat_by_cat(subCatNames, categoryId, db):
         return {"status_code": 0, "message": "category does not exist", "data": []}
     else:
         subcat_q = (
-            db.query(SubCategories.subcategoryId, SubCategories.subcategoryName)
+            db.query(
+                SubCategories.subcategoryId,
+                SubCategories.subcategoryName,
+                SubCategories.categoryId,
+            )
             .filter(SubCategories.categoryId == categoryId)
             .order_by(SubCategories.subcategoryId)
             .all()
         )
-        subcat_att = ["subcategoryId", "subcategoryName"]
+        subcat_att = ["subcategoryId", "subcategoryName", "categoryId"]
         outputList = []
         for subcat in subcat_q:
             outputList.append(dict(zip(subcat_att, subcat)))
