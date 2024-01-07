@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "dvastra-a063d",
+  "private_key_id": "5cb3f873e3f65dc86102cb9eb89b51a1da8780c7",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC1aWlXytScO3eA\nqJka7ISv+ou6VOIPk20D0eduvUHJ6Za/CF5WcDBS5gWpaKwgwAvNZZKulxm4/gYl\nmMWZ58uSL9JH21oNkb5xuQYj+N7PCoWNbpqxNC7OVehzgtCaq+fQeuPJ78gOqCVI\n7noRVCzNJmxn4dpkMa2uOrzYaGBjTKNk8i6T6g/rGG5zfHWOms+qMZ8JjvTFmu2R\nk4m+v7i5rj2GFYaR5mJUrrEJBk/2Lp4kFCj5tULAY2HDmO4I8jF7JPV0pGKUT8XM\n+sYaBQM1ji5WaNsS5AVZimz5/SmT0tKs8EnmcK58qBZo2p+ZP2eVH5f97Q8JwEUi\ncnuu35dzAgMBAAECggEAB79VizUeKQFAecNO1+pY7Pu0uEOZbJPduHzgNtz98HBk\nNTVXc2E9gb98EhTmdkxCqhttN7075n1xaBf4UbnR+k9w2gvBR/S89DYJepjNdHxy\nYVdjY4T4fhcHeINnguuA2L5JeHLKkZcBvKBz9cXUAfuNmU7OblqmxwWQJ2fRvKZ9\nwLxokXAAbgH3+/eCFoCDgxiW+3+uOFbXJafHvHZFsveqzUoZhx8hCXOHoYwxfRw2\nDtDr7I52GoTYFhKc+f7T0GtYXVU04hgzvcOuh6vpA5byyUSQF5AYCNe3E0AxzjSl\nH3IWmSgMYst8WhJuo5GPh5DYfVoX/e7gRwWczjIPLQKBgQD9FCiIPf2mGImXc+Nt\npOt0B3/OvEuExj4vyZ2FKzc/4hmngOWMGYlfAhwlrlxcTaZCVKd8cBCvC3H8ZO6D\nrHsaTcoyXmtc/mwD9Zu93TNt+jICtW3ILkdbRKavxn38Ot41NU4GTyhyU/AKzset\nPIZSBY2BPKwgqW2drQUs6e04rwKBgQC3gXqcJrR+XwOsjG06hgHrq5aIwGPL80Ct\ndGXI6vl24lcI6AimMaFHQnvC+VwA7Hlfiur3rfcz1hbTo/bFOTE2UHKrfMQAPNbM\nl3k5x7tHUUj1YnJUJJs83Ga9+1OqEklrn/tZOx224D5KLM5rPD/SJ09fxeFc3ZVU\nTz/s7so2fQKBgQDVOhPAXoKEW+4pZeG7cpVSqDLdyzXRg3nHp5YJKlUdhPFaeLZu\nqOFd5Bg1A0gcGOw4vLx0krLr2LfMEHoJBNyfV+VBNN4+dropR9lVSbbYNVHHiHcb\njypd0mSiepmRV0P7DpNTq4QHd4Mqh/gilHkTSExmE+luh3GsxKc0pU9STwKBgBWM\njulnYiq03amVk/4bXn5eV/8XGKEKn72+vXUqosDjM3VISju5+EZ1+DKdNcCmBFrD\n5XPQagccTPHtfz0Jyk2mhNC+hgXBHzhHUWUHn2ZwlTC7rtFSuygaebY1nU2LeDO7\nRbjkyEiBbM8pE9Rj7tqu4xNMGXreSnrsE4WvRO/BAoGBANT+OcLeDoEOBuqsvGEE\nEmRAcEVfU40pBl8eQFtWGxaEyhsQz3/3q/h8LsJgtvfQ6zjbIsHf+fRgS48HKza/\n0Rlwb2oPmo/2GnZoguGa3kn81nM0ZVGrD7pkl+I6ufieXq3mYHtQ9q+bo5hdGGXz\nKf28rgtdt6r7pF0FFM0iVaSC\n-----END PRIVATE KEY-----\n",
+  "client_email": "dvastra-a063d@appspot.gserviceaccount.com",
+  "client_id": "100390314659350436237",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dvastra-a063d%40appspot.gserviceaccount.com"
+}
