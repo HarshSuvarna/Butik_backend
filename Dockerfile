@@ -2,7 +2,9 @@ FROM python:3.8.10-slim
 
 WORKDIR /app
 
-COPY . /app
+COPY . /app/src
+
+WORKDIR /app/src
 
 RUN pip install -r requirements.txt
 
