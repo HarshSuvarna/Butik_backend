@@ -1,0 +1,70 @@
+name: Push to image Google Artifact Registry
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  gcp-dev-deployment:
+    name: Build and push image, deploy
+    runs-on: ubuntu-latest
+
+    env:
+      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      SERVICE_NAME: ${{ secrets.SERVICE_NAME }}
+      REGION: asia-south1
+      REPOSITORY: ${{ secrets.REPOSITORY }}
+      IMAGE: main
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Create .env file
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1.0
+        with:
+          envkey_otp_auth: "${{ secrets.OTP_AUTH }}"
+          envkey_url: "${{ secrets.URL }}"
+          envkey_sender_id: "${{ secrets.SENDER_ID }}"
+          envkey_secrets: "${{ secrets.SECRETS }}"
+          envkey_algorithms: "${{ secrets.ALGORITHMS }}"
+          envkey_MYSQL_URI: "${{ secrets.MYSQL_URI }}"
+          file_name: .env
+
+      # Authenticate with google
+      - name: "Autheticate with Google"
+        uses: "google-github-actions/auth@v1"
+        with:
+          credentials_json: "${{ secrets.SERVICE_ACCOUNT_KEY }}"
+
+      # Setup gcloud CLI
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+
+      # Configure docker to use the gcloud command-line tool as a credential helper
+      - name: Configure Docker
+        run: |
+          gcloud auth configure-docker -q
+
+      # Build docker image
+      - name: Build docker image for api
+        run: |-
+          docker build -t "$REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA" .
+
+      - name: Authenticating docker with gcloud
+        run: gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin "https://$REGION-docker.pkg.dev"
+
+      # Push image to Google Artifact Registry
+      - name: Push api image to Google Artifact Registry
+        run: |-
+          docker push "$REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA"
+
+      # Deploy to cloud run
+      - name: Deploy api to cloud run
+        uses: google-github-actions/deploy-cloudrun@main
+        with:
+          service: "${{ env.SERVICE_NAME }}"
+          image: "${{env.REGION}}-docker.pkg.dev/${{env.PROJECT_ID}}/${{env.REPOSITORY}}/${{env.IMAGE}}:${{ github.sha }}"
+          region: "${{ env.REGION }}"
