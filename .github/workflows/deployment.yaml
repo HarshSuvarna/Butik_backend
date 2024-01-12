@@ -25,12 +25,13 @@ jobs:
       - name: Create .env file
         uses: SpicyPizza/create-envfile@v1.0
         with:
-          envkey_otp_auth: "${{ secrets.OTP_AUTH }}"
-          envkey_url: "${{ secrets.URL }}"
-          envkey_sender_id: "${{ secrets.SENDER_ID }}"
+          envkey_OTP_AUTH: "${{ secrets.OTP_AUTH }}"
+          envkey_ACCOUNT_SID: "${{ secrets.ACCOUNT_SID }}"
+          envkey_TWILIO_NUMBER: "${{ secrets.TWILIO_NUMBER }}"
           envkey_secrets: "${{ secrets.SECRETS }}"
           envkey_algorithms: "${{ secrets.ALGORITHMS }}"
           envkey_MYSQL_URI: "${{ secrets.MYSQL_URI }}"
+
           file_name: .env
 
       # Authenticate with google

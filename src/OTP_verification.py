@@ -7,8 +7,8 @@ from models import Users
 import re
 from dotenv import load_dotenv
 import os
-import requests
 from fastapi import HTTPException
+from otp_client import client
 
 
 def isValid(s):
@@ -27,15 +27,11 @@ def send_otp(id, user, db):
     otp = str(random.randint(100000, 999999))
 
     load_dotenv()
-    otp_auths = os.getenv("OTP_AUTH")
-    url = os.getenv("URL")
-    sender_ids = os.getenv("SENDER_ID")
-
-    user_info = (
-        db.query(Users.is_deleted)
-        .filter(Users.mobile == mobile, Users.cc == cc)
-        .first()
-    )
+    # user_info = (
+    #     db.query(Users.is_deleted)
+    #     .filter(Users.mobile == mobile, Users.cc == cc)
+    #     .first()
+    # )
 
     created_on_max = (
         db.query(func.max(OTPs.created_on)).filter(OTPs.mobile == mobile).first()
@@ -60,16 +56,9 @@ def send_otp(id, user, db):
         }
 
     else:
-        querystring = {
-            "authorization": otp_auths,
-            "sender_id": sender_ids,
-            "message": "Your OTP for D'vastra app is: " + str(otp),
-            "route": "v3",
-            "numbers": mobile,
-        }
-
-        headers = {"cache-control": "no-cache"}
-        # response = requests.request("GET", url, headers=headers, params=querystring)
+        body = "Your OTP for Butik login is: " + otp
+        to = cc + mobile
+        # client.messages.create(body=body, from_=os.getenv("TWILIO_NUMBER"), to=to)
 
         new_otp = OTPs(
             mobile=mobile,

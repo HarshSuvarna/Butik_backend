@@ -41,6 +41,7 @@ from schemas import (
     storebySubcat,
     BulkUploadProductCreate,
     BulkUploadVariantCreate,
+    SearchProduct,
 )
 from OTP_verification import send_otp, verify_otp
 from user_method import (
@@ -70,6 +71,7 @@ from product_method import (
     get_product_by_id,
     get_product_by_store_seller,
     toggleIsLive,
+    getSearchedProducts,
 )
 from variant_method import (
     add_variant,
@@ -447,7 +449,7 @@ def add_products(
 
 @user.put("/update_product", tags=["Product"])
 def update_products(
-    product: ProductU,
+    product: SearchProduct,
     db: Session = Depends(get_db),
     secure=Depends(auth_handler.auth_wrapper),
 ):
@@ -477,6 +479,17 @@ def delete_products(
     secure=Depends(auth_handler.auth_wrapper),
 ):
     output = delete_product(str(product.productId), db, secure)
+    return output
+
+
+@user.post("/get-searched-products", tags=["Product"])
+def searchedProducts(
+    body: SearchProduct,
+    db: Session = Depends(get_db),
+    secure=Depends(auth_handler.auth_wrapper),
+):
+    output = getSearchedProducts(body, db, secure)
+    print("output", output)
     return output
 
 

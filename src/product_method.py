@@ -11,6 +11,7 @@ from models import (
     VariantSizePrice,
     Users,
 )
+import geopy.distance
 from datetime import datetime, timedelta
 from sqlalchemy import func, true
 import pandas as pd
@@ -581,6 +582,34 @@ def update_product(
             "message": "You are not Authorized to access this resource",
             "data": {},
         }
+
+
+def getSearchedProducts(body, db, secure):
+    userPosition = (body.latitude, body.longitude)
+    product_q = (
+        db.query(
+            Products.productId,
+            Products.productName,
+            CreateStore.latitude,
+            CreateStore.longitude,
+            Products.imagesUrl,
+        )
+        .join(CreateStore, CreateStore.storeId == Products.storeId)
+        .filter(Products.productName.like("%{}%".format(body.searchedProduct)))
+        .all()
+    )
+    result = []
+    for product in product_q:
+        storePostion = (product[2], product[3])
+        distance = geopy.distance.distance(userPosition, storePostion).km
+        store_dict = {
+            "productId": product[0],
+            "productName": product[1],
+            "distance": distance,
+            "imageUrl": product[4],
+        }
+        result.append(store_dict)
+    return result
 
 
 def delete_product(productId, db, secure):

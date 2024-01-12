@@ -210,6 +210,12 @@ class VariantCreate(BaseModel):
     spqList: List[dict]
 
 
+class SearchProduct(BaseModel):
+    searchedProduct: str = Field(..., min_length=2)
+    latitude: float
+    longitude: float
+
+
 class BulkUploadVariantCreate(BaseModel):
     variants: List[VariantCreate]
 
