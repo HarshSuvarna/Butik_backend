@@ -51,6 +51,7 @@ def send_otp(id, user, db):
                 "cc": cc,
                 "mobile": mobile,
                 "message_status": "otp_sent",
+                "otp": otp,
             },
         }
 
@@ -73,10 +74,7 @@ def send_otp(id, user, db):
         return {
             "status_code": 200,
             "message_status": "otp_sent",
-            "data": {
-                "cc": cc,
-                "mobile": mobile,
-            },
+            "data": {"cc": cc, "mobile": mobile, },
         }
 
 
