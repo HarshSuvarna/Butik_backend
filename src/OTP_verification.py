@@ -51,14 +51,13 @@ def send_otp(id, user, db):
                 "cc": cc,
                 "mobile": mobile,
                 "message_status": "otp_sent",
-                "otp": otp,
             },
         }
 
     else:
         body = "Your OTP for Butik login is: " + otp
         to = cc + mobile
-        client.messages.create(body=body, from_=os.getenv("TWILIO_NUMBER"), to=to)
+        # client.messages.create(body=body, from_=os.getenv("TWILIO_NUMBER"), to=to)
 
         new_otp = OTPs(
             mobile=mobile,
@@ -74,7 +73,10 @@ def send_otp(id, user, db):
         return {
             "status_code": 200,
             "message_status": "otp_sent",
-            "data": {"cc": cc, "mobile": mobile, "otp": otp},
+            "data": {
+                "cc": cc,
+                "mobile": mobile,
+            },
         }
 
 
