@@ -51,7 +51,7 @@ def get_health():
 
 @app.get("/")
 def cover():
-    return "BUTIK API"
+    return "BUTIK APIS"
 
 
 app.include_router(otp.router)
