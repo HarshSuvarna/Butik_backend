@@ -1,4 +1,4 @@
-from models import CreateStore, Genders, Products, Categories, SubCategories, Brand, Colors, Materials, \
+from src.db.models import CreateStore, Genders, Products, Categories, SubCategories, Brand, Colors, Materials, \
 VariantSizePrice, Sizes, ProductVariant, Countries
 from sqlalchemy import func
 

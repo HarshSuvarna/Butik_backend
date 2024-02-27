@@ -1,7 +1,7 @@
-from models import Brand, Categories, CreateStore, Materials, Products, Sizes, ProductVariant, SubCategories, VariantSizePrice, VariantImages, Colors
+from src.db.models import Brand, Categories, CreateStore, Materials, Products, Sizes, ProductVariant, SubCategories, VariantSizePrice, VariantImages, Colors
 from datetime import datetime, timedelta
-from schemas import VariantCreate
-from upload_image import uploadToBucket_variants, deleteVariantImgs
+from src.schemas import VariantCreate
+from src.helper.upload_image import uploadToBucket_variants, deleteVariantImgs
 
 def add_variant(variantId, productId, storeId, colorId, spqList, imagesUrlList,db):
         

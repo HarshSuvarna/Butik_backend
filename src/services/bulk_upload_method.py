@@ -1,4 +1,4 @@
-from models import (
+from src.db.models import (
     Users,
     Products,
     CreateStore,
@@ -7,7 +7,7 @@ from models import (
     VariantSizePrice,
     Transactions,
 )
-from schemas import ProductBulkUpload
+from src.schemas import ProductBulkUpload
 from datetime import datetime, timedelta
 import uuid
 
@@ -39,7 +39,10 @@ def bulkUploadProduct(body, db, secure):
                     or not product["genderId"]
                     or not product["countryId"]
                 ):
-                    return {"status_code": 0, "message": "Operation uncessfull due to invalid inputs"}
+                    return {
+                        "status_code": 0,
+                        "message": "Operation uncessfull due to invalid inputs",
+                    }
                 product["productId"] = str(uuid.uuid4())
                 product["isLive"] = 0
                 product["is_deleted"] = 0
@@ -51,7 +54,7 @@ def bulkUploadProduct(body, db, secure):
                     if threeMonCount > user[0]:
                         return {
                             "status_code": 0,
-                            "message": "Operation unsuccessfull due to insufficient credits"
+                            "message": "Operation unsuccessfull due to insufficient credits",
                         }
                     product["expiry"] = datetime.now().replace(
                         microsecond=0
@@ -60,7 +63,7 @@ def bulkUploadProduct(body, db, secure):
                     if sixMonCount > user[1]:
                         return {
                             "status_code": 0,
-                            "message": "Operation unsuccessfull due to insufficient credits"
+                            "message": "Operation unsuccessfull due to insufficient credits",
                         }
                     product["expiry"] = datetime.now().replace(
                         microsecond=0
@@ -70,7 +73,7 @@ def bulkUploadProduct(body, db, secure):
                     if twelveMonCount > user[2]:
                         return {
                             "status_code": 0,
-                            "message": "Operation unsuccessfull due to insufficient credits"
+                            "message": "Operation unsuccessfull due to insufficient credits",
                         }
                     product["expiry"] = datetime.now().replace(
                         microsecond=0
