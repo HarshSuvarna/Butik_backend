@@ -1,4 +1,4 @@
-from models import (
+from src.db.models import (
     Categories,
     Brand,
     Colors,

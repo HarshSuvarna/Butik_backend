@@ -1,14 +1,14 @@
 import random
-from models import OTPs
+from src.db.models import OTPs
 import datetime
 from sqlalchemy import func
-from authenticate import AuthHandler
-from models import Users
+from src.authenticate import AuthHandler
+from src.db.models import Users
 import re
 from dotenv import load_dotenv
 import os
 from fastapi import HTTPException
-from otp_client import client
+from src.helper.otp_client import client
 
 
 def isValid(s):
@@ -51,7 +51,6 @@ def send_otp(id, user, db):
                 "cc": cc,
                 "mobile": mobile,
                 "message_status": "otp_sent",
-                "otp": otp,
             },
         }
 
@@ -74,7 +73,7 @@ def send_otp(id, user, db):
         return {
             "status_code": 200,
             "message_status": "otp_sent",
-            "data": {"cc": cc, "mobile": mobile, "otp": otp},
+            "data": {"cc": cc, "mobile": mobile},
         }
 
 

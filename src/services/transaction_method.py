@@ -1,4 +1,4 @@
-from models import CouponS, Products, Transactions, Users
+from src.db.models import CouponS, Products, Transactions, Users
 from datetime import datetime
 
 

@@ -1,5 +1,5 @@
 from ast import If
-from models import Countries, CreateStore, Transactions, Users, UserLocations
+from src.db.models import Countries, CreateStore, Transactions, Users, UserLocations
 from datetime import datetime, timedelta
 import uuid
 
