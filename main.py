@@ -28,9 +28,6 @@ app = FastAPI(
         "name": "Harsh Suvarna",
         "email": "harsh.suvarna9962@gmail.com",
     },
-    license_info={
-        "name": "MIT",
-    },
 )
 
 origins = ["*"]

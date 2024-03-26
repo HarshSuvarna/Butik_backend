@@ -31,7 +31,7 @@ jobs:
           envkey_secrets: "${{ secrets.SECRETS }}"
           envkey_algorithms: "${{ secrets.ALGORITHMS }}"
           envkey_MYSQL_URI: "${{ secrets.MYSQL_URI }}"
-
+          envkey_GOOGLE_APPLICATION_CREDENTIALS: "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}"
           file_name: .env
 
       # Authenticate with google

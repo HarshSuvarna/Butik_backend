@@ -2,10 +2,10 @@ from google.cloud import storage
 import os
 import asyncio
 import base64
-
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'src/dvastra-a063d-5cb3f873e3f6.json'
+from dotenv import load_dotenv
 storage_client = storage.Client()
-
+load_dotenv()
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
 def uploadToBucket_stores(storeId, base64Str):
     blobName = 'storeImages/'+'store_'+str(storeId)[:8]+'_image'
     try:
